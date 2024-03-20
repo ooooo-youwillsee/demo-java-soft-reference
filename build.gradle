@@ -1,0 +1,30 @@
+plugins {
+    id "java"
+    id "java-library"
+}
+
+group "com.ooooo"
+version "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:-unchecked" << "-Xlint:-deprecation" << "-Xlint:-varargs"
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs = ["-Xmx10m", "-Xms10m"]
+}
+
+ext {
+    set("springBootVersion", "2.7.4")
+}
+
+dependencies {
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}
+
