@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class CacheTest {
 
     @Test
-    void testSoftReferenceCache() throws InterruptedException {
+    void testSoftReferenceCache() {
         Cache<String, String> cache = new SoftReferenceCache<>();
         for (int i = 0; i < 1_000_000; i++) {
             System.gc();
@@ -23,7 +23,7 @@ public class CacheTest {
     }
 
     @Test
-    void testWeakReferenceCache() throws InterruptedException {
+    void testWeakReferenceCache() {
         Cache<String, String> cache = new WeakReferenceCache<>();
         for (int i = 0; i < 1_000_000; i++) {
             System.gc();

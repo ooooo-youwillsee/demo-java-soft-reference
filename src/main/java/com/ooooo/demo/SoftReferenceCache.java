@@ -33,7 +33,6 @@ public class SoftReferenceCache<K, V> implements Cache<K, V> {
         return softValue.getValue();
     }
 
-
     protected void removeSoftValue() {
         while (true) {
             SoftValue<V> softValue = (SoftValue<V>) referenceQueue.poll();
@@ -45,12 +44,11 @@ public class SoftReferenceCache<K, V> implements Cache<K, V> {
         }
     }
 
-
-    private class SoftValue<V> extends SoftReference<V> {
+    private class SoftValue<T> extends SoftReference<T> {
 
         private K key;
 
-        public SoftValue(K key, V value, ReferenceQueue<V> referenceQueue) {
+        public SoftValue(K key, T value, ReferenceQueue<T> referenceQueue) {
             super(value, referenceQueue);
             this.key = key;
         }
@@ -59,11 +57,7 @@ public class SoftReferenceCache<K, V> implements Cache<K, V> {
             return key;
         }
 
-        public void setKey(K key) {
-            this.key = key;
-        }
-
-        public V getValue() {
+        public T getValue() {
             return super.get();
         }
 
